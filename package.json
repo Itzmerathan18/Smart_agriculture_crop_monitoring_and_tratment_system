@@ -50,6 +50,8 @@
     "@types/cors": "^2.8.13",
     "@types/compression": "^1.7.2",
     "@types/morgan": "^1.9.4",
+    "@types/pdfkit": "^0.12.9",
+    "@types/axios": "^0.14.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
