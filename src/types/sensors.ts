@@ -55,10 +55,74 @@ export interface SensorMetrics {
   alerts: SensorAlert[];
 }
 
+// AI Treatment Recommendation Interfaces
+export interface AIRecommendation {
+  type: 'watering' | 'fertilizer' | 'environmental' | 'pesticide' | 'harvest';
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  action: string;
+  quantity?: string;
+  frequency?: string;
+  reasoning: string;
+  confidence: number; // 0-100
+  costEstimate?: number;
+}
+
+export interface WeatherData {
+  temperature: number;
+  humidity: number;
+  rainfall: number;
+  forecast: string;
+  windSpeed: number;
+}
+
+export interface GrowthStage {
+  stage: 'seedling' | 'juvenile' | 'mature' | 'harvest';
+  ageMonths: number;
+  expectedYield: number;
+}
+
+export interface ArecaAlertThresholds {
+  temperature: {
+    critical_min: number;     // < 20°C (too cold)
+    critical_max: number;     // > 35°C (too hot)
+    optimal_min: number;      // 22°C
+    optimal_max: number;      // 32°C
+  };
+  humidity: {
+    critical_min: number;     // < 40%
+    critical_max: number;     // > 90%
+    optimal_min: number;      // 60%
+    optimal_max: number;      // 80%
+  };
+  moisture: {
+    critical: number;         // < 25% (danger)
+    warning: number;          // < 50% (needs water)
+    optimal_min: number;      // 50%
+    optimal_max: number;      // 70%
+    high_max: number;         // > 75% (stop watering)
+  };
+  nitrogen: {
+    critical: number;         // < 200 mg/kg
+    warning: number;          // < 250 mg/kg
+    optimal_min: number;      // 250 mg/kg
+  };
+  phosphorus: {
+    critical: number;         // < 30 mg/kg
+    warning: number;          // < 50 mg/kg
+    optimal_min: number;      // 50 mg/kg
+  };
+  potassium: {
+    critical: number;         // < 150 mg/kg
+    warning: number;          // < 200 mg/kg
+    optimal_min: number;      // 200 mg/kg
+  };
+}
+
 export interface AlertThresholds {
+  // Keep for backward compatibility
   soil_moisture: {
-    critical: number; // < critical
-    warning: number; // < warning
+    critical: number;
+    warning: number;
     optimal_min: number;
     optimal_max: number;
   };
@@ -69,19 +133,19 @@ export interface AlertThresholds {
     optimal_max: number;
   };
   microbial_activity: {
-    critical_min: number; // CFU/ml
+    critical_min: number;
     warning_min: number;
     optimal_min: number;
     optimal_max: number;
   };
   esp32_signal: {
-    critical: number; // < critical
-    warning: number; // < warning
+    critical: number;
+    warning: number;
     good_min: number;
   };
   battery_level: {
-    critical: number; // < critical
-    warning: number; // < warning
+    critical: number;
+    warning: number;
     good_min: number;
   };
 }
