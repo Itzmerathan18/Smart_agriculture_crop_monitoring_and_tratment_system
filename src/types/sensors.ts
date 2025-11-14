@@ -1,4 +1,4 @@
-// IoT Sensor Data Types for AgriSense Smart Agriculture Dashboard
+// IoT Sensor Data Types for Smart Areca Crop Monitoring & Treatment System
 
 export interface SensorReading {
   sensor_id: string;
@@ -8,10 +8,19 @@ export interface SensorReading {
   signal_strength: number; // percentage (0-100)
   battery_level: number; // percentage (0-100)
   sensors: {
-    soil_moisture: number; // percentage (0-100)
-    ph_level: number; // number (0-14)
-    microbial_activity: number; // CFU/ml or activity index
-    humidity: number; // percentage (0-100)
+    // Environmental sensors
+    temperature: number;        // Celsius (°C)
+    humidity: number;           // Percentage (%)
+
+    // Soil sensors
+    moisture: number;           // Percentage (%)
+
+    // NPK nutrient sensors
+    nitrogen: number;           // mg/kg
+    phosphorus: number;         // mg/kg
+    potassium: number;          // mg/kg
+
+    // System status
     data_transfer_quality: 'excellent' | 'good' | 'poor';
   };
   location: {
@@ -19,6 +28,7 @@ export interface SensorReading {
     longitude: number;
   };
   alerts: SensorAlert[];
+  ai_recommendations?: AIRecommendation[];
 }
 
 export interface SensorAlert {
